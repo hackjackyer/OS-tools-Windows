@@ -7,6 +7,7 @@ set /p ip=请输入:
 netsh interface show interface "本地连接" |find "已连接" &&set ipname="本地连接" ||set ipname="本地连接 2"
 
 netsh interface ip set address %ipname% static 192.168.1.%ip% 255.255.255.0 192.168.1.1
+netsh interface ip del dns %ipname% del
 netsh interface ip add dns %ipname% 8.8.8.8
 netsh interface ip add dns %ipname% 114.114.114.114 index=2
 
