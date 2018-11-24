@@ -1,11 +1,11 @@
 @Echo off
-::by hackjackyer
+::by ä¸¸è‡³
 setlocal enabledelayedexpansion
 set "setuppath=%~d0"
 Color A
 
 if not exist "iis6" (
-        echo ´íÎó:Ã»ÓÐ·¢ÏÖIIS6°²×°ÎÄ¼þ£¬Çë½«´ËÎÄ¼þ·ÅÖÃÓëIIS6Í¬¼¶Ä¿Â¼
+        echo é”™è¯¯:æ²¡æœ‰å‘çŽ°IIS6å®‰è£…æ–‡ä»¶ï¼Œè¯·å°†æ­¤æ–‡ä»¶æ”¾ç½®ä¸ŽIIS6åŒçº§ç›®å½•
         pause
         exit
 )
@@ -13,19 +13,19 @@ if not exist "iis6" (
 @xcopy iis6 "%setuppath%\i386" /d /c /i /y>nul
 
 :: *******************
-:: * ÐÞ¸ÄÄ¬ÈÏ°²×°Â·¾¶
+:: * ä¿®æ”¹é»˜è®¤å®‰è£…è·¯å¾„
 :: *******************
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Setup" /v SourcePath /t REG_SZ /f /d "%setuppath%\\"
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Setup" /v ServicePackSourcePath /t REG_SZ /f /d "%setuppath%\\"
 
-TITLE Ð¡ÓÚIIS6Ò»¼ü°²×°Æ÷
+TITLE å°äºŽIIS6ä¸€é”®å®‰è£…å™¨
 :: *******************
-:: * °²×°²¢½ûÓÃIEÔöÇ¿
+:: * å®‰è£…å¹¶ç¦ç”¨IEå¢žå¼º
 :: *******************
 :Install
 Cls
-@echo. && @echo °²×°ÕýÔÚ½øÐÐÖÐ...
-:: Éú³É IIS 6.0 °²×°½Å±¾£¬ÆôÓÃ ASP£¬ASP.NET
+@echo. && @echo å®‰è£…æ­£åœ¨è¿›è¡Œä¸­...
+:: ç”Ÿæˆ IIS 6.0 å®‰è£…è„šæœ¬ï¼Œå¯ç”¨ ASPï¼ŒASP.NET
 @echo [Components]> %TEMP%\IIS_Install.txt
 @echo iis_common = ON>> %TEMP%\IIS_Install.txt
 @echo iis_www = ON>> %TEMP%\IIS_Install.txt
@@ -34,21 +34,21 @@ Cls
 @echo aspnet = ON>> %TEMP%\IIS_Install.txt
 @echo IEHardenUser = OFF>> %TEMP%\IIS_Install.txt
 @echo IEHardenAdmin = OFF>> %TEMP%\IIS_Install.txt
-:: °²×° IIS 6.0
+:: å®‰è£… IIS 6.0
 %windir%\System32\Sysocmgr.exe /i:sysoc.inf /u:%TEMP%\IIS_Install.txt /q
 del /q /f %windir%\*.log >nul 2>nul
 del /q /f %TEMP%\IIS_Install.txt >nul 2>nul
 del /q /f %TEMP%\ASPNETSetup.log >nul 2>nul
-:: ÅäÖÃ IIS ÆôÓÃ¸¸Â·¾¶
+:: é…ç½® IIS å¯ç”¨çˆ¶è·¯å¾„
 @cscript /nologo C:\Inetpub\AdminScripts\adsutil.vbs set W3SVC/AspEnableParentPaths 1 >nul 2>nul
-copy "%allusersprofile%\¡¸¿ªÊ¼¡¹²Ëµ¥\³ÌÐò\¹ÜÀí¹¤¾ß\Internet ÐÅÏ¢·þÎñ(IIS)¹ÜÀíÆ÷.lnk" "%userprofile%\×ÀÃæ\"
+copy "%allusersprofile%\ã€Œå¼€å§‹ã€èœå•\ç¨‹åº\ç®¡ç†å·¥å…·\Internet ä¿¡æ¯æœåŠ¡(IIS)ç®¡ç†å™¨.lnk" "%userprofile%\æ¡Œé¢\"
 Goto Install_End
 
 :Install_End 
 Cls
 Color B
-@echo. && @echo. && @echo °²×°½áÊø£¬°´ÈÎÒâ¼üÍË³ö£¡
+@echo. && @echo. && @echo å®‰è£…ç»“æŸï¼ŒæŒ‰ä»»æ„é”®é€€å‡ºï¼
 Pause >nul 2>nul
-:: É¾³ý°²×°ÎÄ¼þ
+:: åˆ é™¤å®‰è£…æ–‡ä»¶
 :: del %0 >nul 2>nul  
 Exit
