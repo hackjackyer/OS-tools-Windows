@@ -1,5 +1,5 @@
 @Echo off
-::by 丸至
+::by hackjackyer
 setlocal enabledelayedexpansion
 set "setuppath=%~d0"
 Color A
