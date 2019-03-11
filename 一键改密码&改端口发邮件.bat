@@ -1,15 +1,15 @@
 @echo off
 ::=======================================================================================
-::ä½ çš„qqé‚®ç®±åœ°å€
+::ÄãµÄqqÓÊÏäµØÖ·
 set qquser=
-::ä½ çš„qqé‚®ç®±æˆæƒç ï¼Œä¸æ˜¯å¯†ç å“¦
+::ÄãµÄqqÓÊÏäÊÚÈ¨Âë£¬²»ÊÇÃÜÂëÅ¶
 set qqauth=
-::æ¥å—é‚®ä»¶çš„qqé‚®ç®±
+::½ÓÊÜÓÊ¼şµÄqqÓÊÏä
 set revqq=
-::æ·»åŠ æŠ„é€é‚®ç®±
+::Ìí¼Ó³­ËÍÓÊÏä
 set revqqcc=
 ::=======================================================================================
-::åˆ¤æ–­èƒ½å¦è”ç½‘
+::ÅĞ¶ÏÄÜ·ñÁªÍø
 ping -n 2 www.baidu.com >nul 2>nul
 if errorlevel 0 (
     goto online
@@ -21,34 +21,34 @@ if errorlevel 0 (
 :offline
 ::=======================================================================================
 call :changport
-del ä¸€é”®æ”¹å¯†ç ï¼Œæ”¹ç«¯å£.bat
+del Ò»¼ü¸ÄÃÜÂë£¬¸Ä¶Ë¿Ú.bat
 exit
 ::=======================================================================================
 
 ::=======================================================================================
 :online
-::è·å–ip
-for /f "tokens=2 delims=:" %%i in ('ipconfig^|findstr "IPv4 åœ°å€"') do set ip=%%i
-::ç”Ÿæˆéšæœºç«¯å£å·
+::»ñÈ¡ip
+for /f "tokens=2 delims=:" %%i in ('ipconfig^|findstr "IPv4 µØÖ·"') do set ip=%%i
+::Éú³ÉËæ»ú¶Ë¿ÚºÅ
 call :changport
-::ç”Ÿæˆéšæœºå¯†ç 
+::Éú³ÉËæ»úÃÜÂë
 setlocal enabledelayedexpansion
 set snow=12
 for %%i in (2 3 4 5 6 7 8 9 a b c d e f g h i j k m n p q r s t u v w x y z A B C D E F G H J K L M N P Q R S T U V W X Y Z @ # $ ^( ^) / \) do (set /a x+=1&& set x!x!=%%i)
 for /l %%a in (1 1 %snow%)do (set /a n%%a=!random! %% 63 +1
 call set m=!m!%%x!n%%a!%%)
 set password=Qa1@!m!
-::è®¾ç½®å¯†ç 
+::ÉèÖÃÃÜÂë
 net user %username% %password%
-::å‘é‚®ä»¶
+::·¢ÓÊ¼ş
 echo NameSpace = "http://schemas.microsoft.com/cdo/configuration/" >mail.vbs
 echo Set Email = CreateObject("CDO.Message") >>mail.vbs
 echo Email.From = "%qquser%" >>mail.vbs
 echo Email.To = "%revqq%" >>mail.vbs
 ::echo Email.CC = "%revqqcc%" >>mail.vbs
-echo Email.Subject = "%ip% å¸å·å¯†ç ï¼Œè¿œç¨‹ç«¯å£" >>mail.vbs
-echo Email.HTMLbody = "æœåŠ¡å™¨: %ip%:%port%<br>å¸å·: %username%<br>å¯†ç : %password%" >>mail.vbs
-::echo Email.Textbody = "æœåŠ¡å™¨%ip%:%port%    å¸å·%username%   å¯†ç %password%" >>mail.vbs
+echo Email.Subject = "%ip% ÕÊºÅÃÜÂë£¬Ô¶³Ì¶Ë¿Ú" >>mail.vbs
+echo Email.HTMLbody = "·şÎñÆ÷: %ip%:%port%<br>ÕÊºÅ: %username%<br>ÃÜÂë: %password%" >>mail.vbs
+::echo Email.Textbody = "·şÎñÆ÷%ip%:%port%    ÕÊºÅ%username%   ÃÜÂë%password%" >>mail.vbs
 echo Email.Configuration.Fields.Item(NameSpace ^& "sendusing") = 2 >>mail.vbs
 echo Email.Configuration.Fields.Item(NameSpace ^& "smtpserver")= "smtp.qq.com" >>mail.vbs
 echo Email.Configuration.Fields.Item(NameSpace ^& "smtpserverport")= 25 >>mail.vbs
@@ -60,22 +60,22 @@ echo Email.Configuration.Fields.Update >>mail.vbs
 echo Email.Send >>mail.vbs
 call mail.vbs
 del mail.vbs
-del ä¸€é”®æ”¹å¯†ç ï¼Œæ”¹ç«¯å£.bat
+del Ò»¼ü¸ÄÃÜÂë£¬¸Ä¶Ë¿Ú.bat
 exit
 ::=======================================================================================
 
 
 ::=======================================================================================
 :changport
-::éšæœºç”Ÿæˆè¿œç¨‹ç«¯å£
+::Ëæ»úÉú³ÉÔ¶³Ì¶Ë¿Ú
 set /a port=%random% + 1024
-::ä¿®æ”¹è¿œç¨‹ç«¯å£
+::ĞŞ¸ÄÔ¶³Ì¶Ë¿Ú
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v PortNumber /t reg_dword /d %port% /f
-::æ”¾è¡Œè¿œç¨‹ç«¯å£
-for /f "tokens=2 delims= " %%i in ('netsh advfirewall firewall show rule name^=all dir^=in ^|findstr "æ”¾è¡Œè¿œç¨‹ç«¯å£TCP"') do set tmprule=%%i
+::·ÅĞĞÔ¶³Ì¶Ë¿Ú
+for /f "tokens=2 delims= " %%i in ('netsh advfirewall firewall show rule name^=all dir^=in ^|findstr "·ÅĞĞÔ¶³Ì¶Ë¿ÚTCP"') do set tmprule=%%i
 netsh advfirewall firewall delete rule name="%tmprule"
-netsh advfirewall firewall add rule name="æ”¾è¡Œè¿œç¨‹ç«¯å£TCP%port%" protocol=TCP localport=%port% dir=in action=allow
-::é‡å¯è¿œç¨‹æœåŠ¡ï¼Œä½¿æ–°ç«¯å£ç”Ÿæ•ˆ
+netsh advfirewall firewall add rule name="·ÅĞĞÔ¶³Ì¶Ë¿ÚTCP%port%" protocol=TCP localport=%port% dir=in action=allow
+::ÖØÆôÔ¶³Ì·şÎñ£¬Ê¹ĞÂ¶Ë¿ÚÉúĞ§
 sc stop UmRdpService
 sc stop TermService
 sc stop SessionEnv
