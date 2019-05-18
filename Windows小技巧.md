@@ -5,11 +5,8 @@ MSU格式安装补丁
 ---
 
 ```bat
-expand -F:* simple.msu c:\updates\
-pushd c:\updates
-dism /Online /Add-Package /PackagePath:c:\updates
-or
-dism /Online /Add-Package /PackagePath:c:\updates\simple.cab
+wusa simple.mus /extract:c:\tmp
+dism /Online /Add-Package /PackagePath:c:\tmp\xxx.cab /norestart
 ```bat
 
 CAB格式安装补丁
