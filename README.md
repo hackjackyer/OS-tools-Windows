@@ -1,9 +1,15 @@
 Windows平台运维工具
 ===
 
-Windows平台运维工具
+## IIS6一键安装程序.bat
 
-* install_msu_hotfix.bat
+>一键安装iis6
+
+### 用法
+
+该bat文件放置于i386目录里。双击即可。或者可以与挑选出来的iis6安装文件放置同级目录。压缩后制作成自解压安装程序。
+
+## install_msu_hotfix.bat
 
 用来批量安装msu格式补丁。
 
