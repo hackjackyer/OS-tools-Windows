@@ -1,13 +1,6 @@
 Windows小技巧
 ===
 
-CAB格式安装补丁
----
-
-```bat
-dism /Online /Add-Package /PackagePath:d:\simple.cab
-```
-
 Change users path
 ---
 
