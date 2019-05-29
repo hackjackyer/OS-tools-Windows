@@ -1,14 +1,6 @@
 Windows小技巧
 ===
 
-MSU格式安装补丁
----
-
-```bat
-wusa simple.mus /extract:c:\tmp
-dism /Online /Add-Package /PackagePath:c:\tmp\xxx.cab /norestart
-```bat
-
 CAB格式安装补丁
 ---
 
