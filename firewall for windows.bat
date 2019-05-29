@@ -1,27 +1,27 @@
 @echo off
-title ²Ù×÷·À»ğÇ½£¨»áÄ¬ÈÏ·ÅĞĞÔ¶³Ì¶Ë¿Ú£¬²»Òªµ£ĞÄÔ¶³Ì²»ÉÏ£©
+title æ“ä½œé˜²ç«å¢™ï¼ˆä¼šé»˜è®¤æ”¾è¡Œè¿œç¨‹ç«¯å£ï¼Œä¸è¦æ‹…å¿ƒè¿œç¨‹ä¸ä¸Šï¼‰
 color 2f
 setlocal EnableExtensions EnableDelayedExpansion
-:: »ñÈ¡Ô¶³Ì¶Ë¿ÚºÅ£¬ÒòÎª»ñÈ¡µÄÊÇ16½øÖÆµÄÖµ£¬ËùÒÔÓÃset /a²ÎÊı£¬À´»»Ëã³É10½øÖÆ¡£
+:: è·å–è¿œç¨‹ç«¯å£å·ï¼Œå› ä¸ºè·å–çš„æ˜¯16è¿›åˆ¶çš„å€¼ï¼Œæ‰€ä»¥ç”¨set /aå‚æ•°ï¼Œæ¥æ¢ç®—æˆ10è¿›åˆ¶ã€‚
 for /f "tokens=3 delims= " %%a in ('REG QUERY "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" ^|find /i "PortNumber"') do set /a RDport=%%a
 
 :: Get Architecture of the OS installed; OS Locale/Language Independent from Windows XP / Server 2003 and Later
 for /f "tokens=2 delims==" %%a in ('wmic path Win32_Processor get AddressWidth /value') do (
-    set _OSarch=%%aÎ»
+    set _OSarch=%%aä½
 )
 :: Get Windows OS version information and goto Respective Function
 for /f "tokens=2 delims==" %%a in ('wmic path Win32_OperatingSystem get BuildNumber /value') do (
     set /a _WinBuild=%%a
 )
 if %_WinBuild% GEQ 7600 (
-    echo ³ÌĞò×¼±¸ÖĞ£¬ÇëÊÇÉÔµÈ¡­¡­
+    echo ç¨‹åºå‡†å¤‡ä¸­ï¼Œè¯·ç¨ç­‰â€¦â€¦
     goto :Win7AndLater
 ) else if %_WinBuild% GEQ 2600 (
-    echo ³ÌĞò×¼±¸ÖĞ£¬ÇëÊÇÉÔµÈ¡­¡­
+    echo ç¨‹åºå‡†å¤‡ä¸­ï¼Œè¯·ç¨ç­‰â€¦â€¦
     goto :VistaAndBelow
 ) else (
-    echo ´Ë³ÌĞò²»ÊÊÓÃ´Ë²Ù×÷ÏµÍ³
-    echo °´ÈÎÒâ¼üÍË³ö exit...
+    echo æ­¤ç¨‹åºä¸é€‚ç”¨æ­¤æ“ä½œç³»ç»Ÿ
+    echo æŒ‰ä»»æ„é”®é€€å‡º exit...
     pause >nul
     exit
 )
@@ -30,27 +30,27 @@ if %_WinBuild% GEQ 7600 (
 cls
 echo Win7AndLater
 echo.
-echo µ±Ç°Ô¶³Ì¶Ë¿ÚÊÇ%RDport%
+echo å½“å‰è¿œç¨‹ç«¯å£æ˜¯%RDport%
 echo.
-echo µ±Ç°ÏµÍ³ÊÇ!_OSarch!ÏµÍ³
+echo å½“å‰ç³»ç»Ÿæ˜¯!_OSarch!ç³»ç»Ÿ
 echo.
-echo µ±Ç°ÏµÍ³°æ±¾ÊÇ!_WinBuild!
-echo.
-echo ------------------------------------------
-echo ÇëÑ¡ÔñÒª½øĞĞµÄ²Ù×÷£¨ÊäÈë¶ÔÓ¦µÄÊı×Ö£¬»Ø³µ¼´¿É£©
-echo.
-echo 1.½ûping
-echo.
-echo 2.·ÅĞĞ¶Ë¿Ú
-echo.
-echo 3.½ûÖ¹¶Ë¿Ú
-echo.
-echo 4.¹Ø±Õ·À»ğÇ½
-echo.
-echo 5.ÍË³ö
+echo å½“å‰ç³»ç»Ÿç‰ˆæœ¬æ˜¯!_WinBuild!
 echo.
 echo ------------------------------------------
-set /p choi=ÇëÊäÈëÄúµÄÑ¡Ôñ£º
+echo è¯·é€‰æ‹©è¦è¿›è¡Œçš„æ“ä½œï¼ˆè¾“å…¥å¯¹åº”çš„æ•°å­—ï¼Œå›è½¦å³å¯ï¼‰
+echo.
+echo 1.ç¦ping
+echo.
+echo 2.æ”¾è¡Œç«¯å£
+echo.
+echo 3.ç¦æ­¢ç«¯å£
+echo.
+echo 4.å…³é—­é˜²ç«å¢™
+echo.
+echo 5.é€€å‡º
+echo.
+echo ------------------------------------------
+set /p choi=è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š
 
 if %choi% equ 1 goto :DenyICMP
 if %choi% equ 2 goto :Allowport
@@ -66,7 +66,7 @@ call :ENABLEFW
 netsh advfirewall firewall add rule name="DenyICMPv4" dir=in protocol=icmpv4 action=block enable=yes
 cls
 echo.
-echo ½ûpingÁË
+echo ç¦pingäº†
 echo.
 pause
 goto :Win7AndLater
@@ -74,13 +74,13 @@ goto :Win7AndLater
 :Allowport
 cls
 call :ENABLEFW
-echo Ä¬ÈÏ¶¼ÊÇ·ÅĞĞtcpĞ­ÒéµÄ¶Ë¿Ú£¬Ö§³Ö·¶Î§ÊäÈë±ÈÈç80-90£¬¿ÉÒÔ·ÅĞĞ80-90µÄËùÓĞ¶Ë¿Ú
-set /p port=ÇëÊäÈëÒª·ÅĞĞµÄ¶Ë¿ÚºÅ£º
-netsh advfirewall firewall delete rule name="·ÅĞĞTCP%port%"
-netsh advfirewall firewall add rule name="·ÅĞĞTCP%port%" protocol=TCP localport=%port% dir=in action=allow
+echo é»˜è®¤éƒ½æ˜¯æ”¾è¡Œtcpåè®®çš„ç«¯å£ï¼Œæ”¯æŒèŒƒå›´è¾“å…¥æ¯”å¦‚80-90ï¼Œå¯ä»¥æ”¾è¡Œ80-90çš„æ‰€æœ‰ç«¯å£
+set /p port=è¯·è¾“å…¥è¦æ”¾è¡Œçš„ç«¯å£å·ï¼š
+netsh advfirewall firewall delete rule name="æ”¾è¡ŒTCP%port%"
+netsh advfirewall firewall add rule name="æ”¾è¡ŒTCP%port%" protocol=TCP localport=%port% dir=in action=allow
 cls
 echo.
-echo ·ÅĞĞTCP%port%¶Ë¿ÚÁË
+echo æ”¾è¡ŒTCP%port%ç«¯å£äº†
 echo.
 pause
 goto :Win7AndLater
@@ -88,13 +88,13 @@ goto :Win7AndLater
 :DenyPort
 cls
 call :ENABLEFW
-echo Ä¬ÈÏ¶¼ÊÇ½ûÖ¹tcpĞ­ÒéµÄ¶Ë¿Ú£¬Ö§³Ö·¶Î§ÊäÈë±ÈÈç80-90£¬¿ÉÒÔ·ÅĞĞ80-90µÄËùÓĞ¶Ë¿Ú
-set /p port=ÇëÊäÈëÒª½ûÖ¹µÄ¶Ë¿ÚºÅ£º
-netsh advfirewall firewall delete rule name="½ûÖ¹TCP%port%"
-netsh advfirewall firewall add rule name="½ûÖ¹TCP%port%" protocol=TCP localport=%port% dir=in action=block
+echo é»˜è®¤éƒ½æ˜¯ç¦æ­¢tcpåè®®çš„ç«¯å£ï¼Œæ”¯æŒèŒƒå›´è¾“å…¥æ¯”å¦‚80-90ï¼Œå¯ä»¥æ”¾è¡Œ80-90çš„æ‰€æœ‰ç«¯å£
+set /p port=è¯·è¾“å…¥è¦ç¦æ­¢çš„ç«¯å£å·ï¼š
+netsh advfirewall firewall delete rule name="ç¦æ­¢TCP%port%"
+netsh advfirewall firewall add rule name="ç¦æ­¢TCP%port%" protocol=TCP localport=%port% dir=in action=block
 cls
 echo.
-echo ½ûÖ¹TCP%port%¶Ë¿ÚÁË
+echo ç¦æ­¢TCP%port%ç«¯å£äº†
 echo.
 pause
 goto :Win7AndLater
@@ -104,12 +104,12 @@ cls
 netsh advfirewall set currentprofile state off
 cls
 echo.
-echo ¹Ø±Õ·À»ğÇ½ÁË
+echo å…³é—­é˜²ç«å¢™äº†
 echo.
 pause
 goto :Win7AndLater
 ::============================================================
-::ÆôÓÃ·À»ğÇ½
+::å¯ç”¨é˜²ç«å¢™
 :ENABLEFW
 netsh advfirewall set currentprofile state on
 exit /b
@@ -122,27 +122,27 @@ exit /b
 cls
 echo VistaAndBelow
 echo.
-echo µ±Ç°Ô¶³Ì¶Ë¿ÚÊÇ%RDport%
+echo å½“å‰è¿œç¨‹ç«¯å£æ˜¯%RDport%
 echo.
-echo µ±Ç°ÏµÍ³ÊÇ!_OSarch!ÏµÍ³
+echo å½“å‰ç³»ç»Ÿæ˜¯!_OSarch!ç³»ç»Ÿ
 echo.
-echo µ±Ç°ÏµÍ³°æ±¾ÊÇ!_WinBuild!
-echo.
-echo ------------------------------------------
-echo ÇëÑ¡ÔñÒª½øĞĞµÄ²Ù×÷£¨ÊäÈë¶ÔÓ¦µÄÊı×Ö£¬»Ø³µ¼´¿É£©
-echo.
-echo 1.½ûping
-echo.
-echo 2.·ÅĞĞ¶Ë¿Ú
-echo.
-echo 3.½ûÖ¹¶Ë¿Ú
-echo.
-echo 4.¹Ø±Õ·À»ğÇ½
-echo.
-echo 5.ÍË³ö
+echo å½“å‰ç³»ç»Ÿç‰ˆæœ¬æ˜¯!_WinBuild!
 echo.
 echo ------------------------------------------
-set /p chois=ÇëÊäÈëÄúµÄÑ¡Ôñ£º
+echo è¯·é€‰æ‹©è¦è¿›è¡Œçš„æ“ä½œï¼ˆè¾“å…¥å¯¹åº”çš„æ•°å­—ï¼Œå›è½¦å³å¯ï¼‰
+echo.
+echo 1.ç¦ping
+echo.
+echo 2.æ”¾è¡Œç«¯å£
+echo.
+echo 3.ç¦æ­¢ç«¯å£
+echo.
+echo 4.å…³é—­é˜²ç«å¢™
+echo.
+echo 5.é€€å‡º
+echo.
+echo ------------------------------------------
+set /p chois=è¯·è¾“å…¥æ‚¨çš„é€‰æ‹©ï¼š
 
 if %chois% equ 1 goto :DenyICMPb
 if %chois% equ 2 goto :Allowportb
@@ -158,31 +158,31 @@ call :ENABLEFWb
 netsh firewall set icmpsetting type=ALL mode=disable
 cls
 echo.
-echo ½ûpingÉèÖÃÍê³É
+echo ç¦pingè®¾ç½®å®Œæˆ
 echo.
 pause
 goto :VistaAndBelow
 ::============================================================
 :Allowportb
 cls
-set /p port=ÇëÊäÈëÒª·ÅĞĞµÄ¶Ë¿ÚºÅ£¨Ä¬ÈÏ¶¼ÊÇ·ÅĞĞtcpĞ­ÒéµÄ¶Ë¿Ú£©£º
+set /p port=è¯·è¾“å…¥è¦æ”¾è¡Œçš„ç«¯å£å·ï¼ˆé»˜è®¤éƒ½æ˜¯æ”¾è¡Œtcpåè®®çš„ç«¯å£ï¼‰ï¼š
 call :ENABLEFWb
-netsh firewall add portopening tcp %port% ·ÅĞĞTCP%port%¶Ë¿Ú
+netsh firewall add portopening tcp %port% æ”¾è¡ŒTCP%port%ç«¯å£
 cls
 echo.
-echo ·ÅĞĞTCP%port%¶Ë¿ÚÁË
+echo æ”¾è¡ŒTCP%port%ç«¯å£äº†
 echo.
 pause
 goto :VistaAndBelow
 ::============================================================
 :DenyPortb
 cls
-set /p port=ÇëÊäÈëÒª½ûÖ¹µÄ¶Ë¿ÚºÅ£¨Ä¬ÈÏ¶¼ÊÇ½ûÖ¹tcpĞ­ÒéµÄ¶Ë¿Ú£©£º
+set /p port=è¯·è¾“å…¥è¦ç¦æ­¢çš„ç«¯å£å·ï¼ˆé»˜è®¤éƒ½æ˜¯ç¦æ­¢tcpåè®®çš„ç«¯å£ï¼‰ï¼š
 call :ENABLEFWb
 netsh firewall delete portopening tcp %port%
 cls
 echo.
-echo ½ûÖ¹TCP%port%¶Ë¿ÚÁË
+echo ç¦æ­¢TCP%port%ç«¯å£äº†
 echo.
 pause
 goto :VistaAndBelow
@@ -192,12 +192,12 @@ cls
 netsh firewall set opmode mode = disable
 cls
 echo.
-echo ¹Ø±Õ·À»ğÇ½ÁË
+echo å…³é—­é˜²ç«å¢™äº†
 echo.
 pause
 goto :VistaAndBelow
 ::============================================================
-::ÆôÓÃ·À»ğÇ½
+::å¯ç”¨é˜²ç«å¢™
 :ENABLEFWb
 netsh firewall set opmode mode = enable
 netsh firewall set service remotedesktop enable
