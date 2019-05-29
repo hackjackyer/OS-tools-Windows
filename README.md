@@ -11,7 +11,7 @@ Windows平台运维工具
 
 ## install_msu_hotfix.bat
 
-用来批量安装msu格式补丁。
+>用来批量安装msu格式补丁。
 
 ### 用法
 
