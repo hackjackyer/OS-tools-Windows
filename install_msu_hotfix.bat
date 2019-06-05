@@ -1,17 +1,18 @@
 @echo off
-title 小于msu格式补丁安装器
+title С��msu��ʽ������װ��
+::hackjackyer
 
 set kbfile=kb_list_xiaoyu.txt
 dir 3>%kbfile%
 cls
 
-echo == 相关服务检查中 ==
+echo == ��ط������� ==
 ping -n 10 127.0.0.1>nul
 sc config wuauserv start= demand>nul
 net start wuauserv>nul
 
 echo.
-echo == 开始安装补丁 ==
+echo == ��ʼ��װ���� ==
 for /f %%a in ('dir /b *.msu') do (
     echo "%%a" ...
     ping -n 5 127.0.0.1>nul
@@ -26,13 +27,13 @@ for /f "tokens=2 delims= " %%a in (all_xiaoyu.txt) do (
 
 cls
 echo.
-echo == 安装完成 ==
-echo 本次安装了下列补丁:
+echo == ��װ��� ==
+echo ���ΰ�װ�����в���:
 findstr /belig:kb_all_xiaoyu.txt %kbfile%
 findstr /belvig:kb_all_xiaoyu.txt %kbfile%>nul
 if %errorlevel%==0 (
-    echo == 下列补丁未安装 ==
-    echo 请手动安装并查看原因
+    echo == ���в���δ��װ ==
+    echo ���ֶ���װ���鿴ԭ��
     findstr /belvig:kb_all_xiaoyu.txt %kbfile%
 )
 echo.
