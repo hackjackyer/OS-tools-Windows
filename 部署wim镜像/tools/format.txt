@@ -1,0 +1,9 @@
+sel disk x //这里替换成你自定义partdisk脚本
+clean
+create part pri size=204800
+format quick
+active
+ass letter=F:
+create part pri
+format quick
+ass
