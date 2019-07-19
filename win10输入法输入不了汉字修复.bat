@@ -10,5 +10,5 @@ fltmc >nul 2>&1 || (
     exit
 )
 schtasks /Run /TN \Microsoft\Windows\TextServicesFramework\MsCtfMonitor
-echo ä¿®å¤å®Œæˆ
+echo ÐÞ¸´Íê³É
 ping -n 3 127.0.0.1 >nul
