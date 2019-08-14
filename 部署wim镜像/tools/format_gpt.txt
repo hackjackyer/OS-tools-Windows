@@ -1,0 +1,13 @@
+sel disk x //这里替换成你自定义partdisk脚本
+clean
+convert gpt
+create part efi size=512
+ass letter=D
+format quick fs=fat32
+create part msr size=128
+create part pri size=204800
+format quick
+ass letter=C
+create part pri
+format quick
+ass
