@@ -1,6 +1,6 @@
 # Windows平台运维工具
 
-## IIS6一键安装程序.bat
+## batch\IIS6一键安装程序.bat
 
 >一键安装iis6
 
@@ -8,7 +8,7 @@
 
 该bat文件放置于i386目录里。双击即可。或者可以与挑选出来的iis6安装文件放置同级目录。压缩后制作成自解压安装程序。
 
-## install_msu_hotfix.bat
+## batch\install_msu_hotfix.bat
 
 >用来批量安装msu格式补丁。
 
@@ -39,3 +39,7 @@
 ### 用法
 
 需要修改format.txt适应自己的系统。其他的，没太大难度。自己看吧
+
+## powershell scripts\USBUpdate.ps1
+
+添加windows补丁到wim中
